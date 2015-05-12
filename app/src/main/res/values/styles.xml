@@ -1,0 +1,28 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryColorDark</item>
+
+        <item name="android:textColor">@color/blackText</item>
+        <item name="android:textColorPrimary">@color/blackText</item>
+        <item name="android:textColorSecondary">@color/blackText</item>
+    </style>
+
+    <style name="AppThemeToolbar" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryColorDark</item>
+
+        <item name="android:textColor">@color/whiteText</item>
+        <item name="android:textColorPrimary">@color/whiteText</item>
+        <item name="android:textColorSecondary">@color/whiteText</item>
+    </style>
+
+</resources>
