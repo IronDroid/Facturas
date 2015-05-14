@@ -9,7 +9,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
+
+import java.util.StringTokenizer;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
@@ -48,8 +51,13 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         Log.v("Scanner", result.getText()); // Prints scan results
         Log.v("Scanner", result.getBarcodeFormat().toString());
         Intent intent = new Intent();
-        intent.putExtra("text", result.getText());
-        setResult(RESULT_OK, intent);
+        StringTokenizer tokenizer = new StringTokenizer(result.getText(),"|");
+        if (result.getBarcodeFormat() == BarcodeFormat.QR_CODE && tokenizer.countTokens() > 5) {
+            intent.putExtra("text", result.getText());
+            setResult(RESULT_OK, intent);
+        } else {
+            setResult(RESULT_CANCELED);
+        }
         finish();
     }
 }
