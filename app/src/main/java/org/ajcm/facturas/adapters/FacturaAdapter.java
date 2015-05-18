@@ -24,16 +24,19 @@ public class FacturaAdapter extends RecyclerView.Adapter<FacturaAdapter.ViewHold
         // each data item is just a string in this case
         public TextView totalFactura;
         public TextView fechaEmision;
+        public TextView ci;
         public ViewHolder(View v) {
             super(v);
             totalFactura = (TextView) v.findViewById(R.id.total_factura);
             fechaEmision = (TextView) v.findViewById(R.id.fecha_emision);
+            ci = (TextView) v.findViewById(R.id.ci);
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public FacturaAdapter(ArrayList<QRFactura> myDataset) {
         mDataset = myDataset;
+        notifyDataSetChanged();
     }
 
     // Create new views (invoked by the layout manager)
@@ -47,16 +50,13 @@ public class FacturaAdapter extends RecyclerView.Adapter<FacturaAdapter.ViewHold
         return new ViewHolder(v);
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
         holder.totalFactura.setText(mDataset.get(position).getExtras());
         holder.fechaEmision.setText(mDataset.get(position).getFecha_emision());
+        holder.ci.setText(mDataset.get(position).getNumero_factura());
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return mDataset.size();

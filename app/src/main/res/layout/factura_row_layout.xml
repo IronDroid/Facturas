@@ -13,13 +13,26 @@
 
         <TextView
             android:id="@+id/total_factura"
-            android:layout_width="match_parent"
+            android:text="total_factura"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/blackText"
             android:textSize="20sp"/>
 
         <TextView
+            android:id="@+id/ci"
+            android:text="CI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blackText"
+            android:textSize="20sp"
+            android:layout_above="@+id/fecha_emision"
+            android:layout_alignRight="@+id/fecha_emision"
+            android:layout_alignEnd="@+id/fecha_emision" />
+
+        <TextView
             android:id="@+id/fecha_emision"
+            android:text="fecha_emision"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"

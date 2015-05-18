@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity  {
             for (int i = 0; i < dbAll.size(); i++) {
                 QRFactura factura = (QRFactura) dbAll.get(i);
                 dataModels.add(factura);
-                Log.e("Factura", factura.getExtras());
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -97,6 +96,9 @@ public class MainActivity extends AppCompatActivity  {
                 db.open();
                 db.setClassModel(QRFactura.class);
                 db.add(factura);
+                dataModels.add(factura);
+                mAdapter = new FacturaAdapter(dataModels);
+                mRecyclerView.setAdapter(mAdapter);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -105,8 +107,7 @@ public class MainActivity extends AppCompatActivity  {
         }
     }
 
-    public QRFactura setResultQR(String data){
-        Log.e("data", data);
+    public QRFactura setResultQR(String data) {
         StringTokenizer tokenizer = new StringTokenizer(data, "|");
         Vector<String> vs = new Vector<>();
         while (tokenizer.hasMoreTokens()){
@@ -124,8 +125,8 @@ public class MainActivity extends AppCompatActivity  {
         factura.setCodigo_control(vs.get(6));
         factura.setNit_ndi_ci(vs.get(7));
         factura.setImporte_ventas(vs.get(8));
-        factura.setFecha_limite_emision("0");
-        factura.setImporte_ice("0");
+        factura.setFecha_limite_emision(vs.get(9));
+        factura.setImporte_ice(vs.get(10));
         factura.setNombre_razon_social("0");
         factura.setNombre_razon_social_comprador("0");
         return factura;

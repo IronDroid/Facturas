@@ -1,6 +1,5 @@
 package org.ajcm.facturas.utils;
 
-
 import android.util.Log;
 
 import java.lang.reflect.Field;
@@ -13,7 +12,7 @@ public class DBUtils {
     public static String classToSQL(Class<?> classDB){
         String resSQL = "CREATE TABLE ";
         String tableName = classDB.getSimpleName();
-        resSQL = resSQL + tableName + " (_id integer primary key autoincrement";
+        resSQL = resSQL + tableName + " (_id INTEGER PRIMARY KEY AUTOINCREMENT";
         Field[] fields = classDB.getDeclaredFields();
         for (Field f: fields){
             Class<?> declaringClass = f.getType();
@@ -27,7 +26,6 @@ public class DBUtils {
             resSQL = resSQL + ", "+ columnName + " " + typeData;
         }
         resSQL += ")";
-        Log.e("ClassToSQL", resSQL);
         return resSQL;
     }
 }
