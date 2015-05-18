@@ -1,4 +1,4 @@
-package org.ajcm.facturas;
+package org.ajcm.facturas.activities;
 
 import android.content.Intent;
 import android.media.Ringtone;
@@ -11,6 +11,8 @@ import android.util.Log;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
+
+import org.ajcm.facturas.R;
 
 import java.util.StringTokenizer;
 
@@ -45,8 +47,8 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
 
     @Override
     public void handleResult(Result result) {
-        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(), notification);
+        Uri url = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.beep);
+        Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(), url);
         ringtone.play();
         Log.v("Scanner", result.getText()); // Prints scan results
         Log.v("Scanner", result.getBarcodeFormat().toString());
