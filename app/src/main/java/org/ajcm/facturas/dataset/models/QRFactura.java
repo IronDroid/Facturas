@@ -3,6 +3,7 @@ package org.ajcm.facturas.dataset.models;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.provider.BaseColumns;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.ajcm.facturas.dataset.ModelAbstract;
@@ -13,6 +14,7 @@ import java.util.List;
  * Created by jhonny on 13-05-15.
  */
 public class QRFactura implements ModelAbstract{
+    private int _id;
     private String nit;
     private String nombre_razon_social;
     private String numero_factura;
@@ -26,6 +28,14 @@ public class QRFactura implements ModelAbstract{
     private String nit_ndi_ci;
     private String nombre_razon_social_comprador;
     private String extras;
+
+    public int get_id() {
+        return _id;
+    }
+
+    public void set_id(int _id) {
+        this._id = _id;
+    }
 
     public String getNit() {
         return nit;
@@ -131,6 +141,13 @@ public class QRFactura implements ModelAbstract{
         this.extras = extras;
     }
 
+    /**
+     * Este metodo devuelve un objeto ContentValues con los datos del model
+     * en este caso de este objeto.
+     * Esto se hace para guardar el modelo a la base de datos, sin el ID porque es
+     * autoincrementable.
+     * @return
+     */
     @Override
     public ContentValues getData() {
         ContentValues cv = new ContentValues();
@@ -150,9 +167,17 @@ public class QRFactura implements ModelAbstract{
         return cv;
     }
 
+    /**
+     * Este metodo llena los campos del objeto apartir de un Cursor, es decir
+     * que se se utiliza despues de una consulta.
+     * @param cursor representa una fila de una tabla... el cursor es resultado de una consulta, y
+     *               es utilizado para llenar los campos del objeto
+     * @return retorna una objeto con todos los datos, incluyendo el ID.
+     */
     @Override
     public QRFactura setData(Cursor cursor) {
         QRFactura factura = new QRFactura();
+        factura.set_id(cursor.getInt(0));
         factura.setCodigo_control(cursor.getString(1));
         factura.setExtras(cursor.getString(2));
         factura.setFecha_emision(cursor.getString(3));

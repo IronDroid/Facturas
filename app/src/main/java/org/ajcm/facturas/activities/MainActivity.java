@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity  {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new FacturaAdapter(dataModels);
+        mAdapter = new FacturaAdapter(dataModels, this);
         mRecyclerView.setAdapter(mAdapter);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity  {
                 db.setClassModel(QRFactura.class);
                 db.add(factura);
                 dataModels.add(factura);
-                mAdapter = new FacturaAdapter(dataModels);
+                mAdapter = new FacturaAdapter(dataModels, this);
                 mRecyclerView.setAdapter(mAdapter);
             } catch (SQLException e) {
                 e.printStackTrace();

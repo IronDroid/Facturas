@@ -14,9 +14,9 @@ public class DBUtils {
         String tableName = classDB.getSimpleName();
         resSQL = resSQL + tableName + " (_id INTEGER PRIMARY KEY AUTOINCREMENT";
         Field[] fields = classDB.getDeclaredFields();
-        for (Field f: fields){
-            Class<?> declaringClass = f.getType();
-            String columnName = f.getName();
+        for (int i = 1; i < fields.length; i++) {
+            Class<?> declaringClass = fields[i].getType();
+            String columnName = fields[i].getName();
             String typeData = declaringClass.getSimpleName();
             if (typeData.equalsIgnoreCase("String")){
                 typeData = "TEXT";
